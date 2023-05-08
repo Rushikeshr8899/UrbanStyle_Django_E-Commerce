@@ -1,0 +1,117 @@
+{% extends "Base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static '/images/banners/2.jpg' %}" class="img-fluid rounded">
+</div>
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+<div class="container">
+	<header class="section-heading">
+		<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
+		<h3 class="section-title">Categories</h3>
+	</header>
+
+
+	<div class="row ">
+		{% for cat in categories %}
+		<div class="col-md-3">
+			<div class="card card-product-grid">
+				<a href="{{ cat.get_url }}" class="img-wrap"> <img src="{{ cat.cat_image.url }}"> </a>
+				<figcaption class="info-wrap">
+					<a href="{{ cat.get_url }}" class="title">{{ cat.category_name }}</a>
+					<div class="price mt-1"></div> <!-- price-wrap.// -->
+				</figcaption>
+			</div>
+			
+		</div>
+		{% endfor %}
+	
+	</div>
+
+<hr><hr>
+
+	<div>
+  <marquee behavior="" direction="left"  scrollamount="20"><h1  id="" style="font-size: 45px; color: rgb(255, 255, 255); background: linear-gradient(45deg,rgb(21, 226, 168),rgb(63, 208, 23),yellow);"> Flat 20% Off On Shopping Above 2999 & Win More Rewards</h1></marquee>
+</div>
+
+
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static '/images/banners/4.jpg' %}" class="img-fluid rounded img-size img-shadow">
+</div>
+
+</div>
+</section>
+
+<hr><hr>
+<header class="section-heading">
+	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
+	<h3 class="section-title">Popular Products</h3>
+</header><!-- sect-heading -->
+
+
+
+	
+<div class="row">
+
+	{% for prod in products %}
+	<div class="col-md-3">
+		<div class="card card-product-grid">
+			<a href="{{ prod.get_url }}" class="img-wrap"> <img src="{{ prod.images.url }}"> </a>
+			<figcaption class="info-wrap">
+				<a href="{{ prod.get_url }}" class="title">{{ prod.product_name }}</a>
+				<div class="price mt-1">${{ prod.price }}</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	
+	</div>
+
+	{% endfor %}
+</div>
+</section>
+
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static '/images/banners/9.jpg' %}" class="img-fluid rounded img-size img-shadow" style="width: 100%; height: 250px">
+</div>
+</div>
+</section>
+
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static '/images/banners/5.jpg' %}" class="img rounded img-size img-shadow"  style="width: 100%; height: 250px">
+</div>
+</div>
+</section>
+
+
+<!-- ========================= SECTION  END// ========================= -->
+{% endblock content %}
+
+
+
+
+</body>
+</html>
