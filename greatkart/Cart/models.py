@@ -20,3 +20,10 @@ class CartItem(m.Model):
         return self.product.price * self.quantity
     def __str__(self):
         return self.product
+    
+
+class Contact_us(m.Model):
+    first_name=m.CharField(max_length=50)
+    last_name=m.CharField(max_length=50)
+    phone=m.CharField(max_length=10)
+    email=m.EmailField()
