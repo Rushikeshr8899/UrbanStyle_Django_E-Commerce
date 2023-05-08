@@ -8,69 +8,77 @@
 <article class="card mb-4">
 <div class="card-body">
 <h4 class="card-title mb-4">Review cart</h4>
+
 <div class="row">
+    {% for cart_item in cart_items %}
     <div class="col-md-6">
         <figure class="itemside  mb-4">
-            <div class="aside"><img src="{% static './images/items/1.jpg' %}" class="border img-sm"></div>
+            <div class="aside"><img src="{{ cart_item.product.images.url }}" class="border img-sm"></div>
+            <figcaption class="info">
+                <p>{{ cart_item.product.slug }} </p>
+                <span class="text-muted">{{cart_item.quantity}} X {{cart_item.product.price}}</span>
+            </figcaption>
+        </figure>
+    </div> <!-- col.// -->
+    <!-- <div class="col-md-6">
+        <figure class="itemside  mb-4">
+            <div class="aside"><img src="" class="border img-sm"></div>
             <figcaption class="info">
                 <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
                 <span class="text-muted">2x = $560 </span>
             </figcaption>
         </figure>
-    </div> <!-- col.// -->
-    <div class="col-md-6">
-        <figure class="itemside  mb-4">
-            <div class="aside"><img src="{% static './images/items/2.jpg' %}" class="border img-sm"></div>
-            <figcaption class="info">
-                <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                <span class="text-muted">2x = $560 </span>
-            </figcaption>
-        </figure>
-    </div> <!-- col.// -->
+    </div> 
     <div class="col-md-6">
         <figure class="itemside mb-4">
-            <div class="aside"><img src="{% static './images/items/3.jpg' %}" class="border img-sm"></div>
+            <div class="aside"><img src="" class="border img-sm"></div>
             <figcaption class="info">
                 <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
                 <span class="text-muted">2x = $560 </span>
             </figcaption>
         </figure>
-    </div> <!-- col.// -->
+    </div> 
     <div class="col-md-6">
         <figure class="itemside  mb-4">
-            <div class="aside"><img src="{% static './images/items/4.jpg' %}" class="border img-sm"></div>
+            <div class="aside"><img src="" class="border img-sm"></div>
             <figcaption class="info">
                 <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
                 <span class="text-muted">2x = $560 </span>
             </figcaption>
         </figure>
-    </div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- card-body.// -->
-</article> <!-- card.// -->
+    </div> -->
+    {% endfor %}
+</div>
+</div> 
+</article> 
+
 
 
 <article class="card mb-4">
 <div class="card-body">
 <h4 class="card-title mb-4">Contact info</h4>
-<form action="">
+<form action="{% url 'contact_us' %}" method="post">
+    {% csrf_token %}
     <div class="row">
         <div class="form-group col-sm-6">
             <label>Frst name</label>
-            <input type="text" placeholder="Type here" class="form-control">
+            <input type="text" placeholder="Type here" class="form-control" name="first_name">
         </div>
         <div class="form-group col-sm-6">
             <label>Last name</label>
-            <input type="text" placeholder="Type here" class="form-control">
+            <input type="text" placeholder="Type here" class="form-control" name="last_name">
         </div>
         <div class="form-group col-sm-6">
             <label>Phone</label>
-            <input type="text" value="+91" class="form-control">
+            <input type="text"  class="form-control" name="phone">
         </div>
         <div class="form-group col-sm-6">
             <label>Email</label>
-            <input type="email" placeholder="example@gmail.com" class="form-control">
+            <input type="email" placeholder="example@gmail.com" class="form-control" name="email">
         </div>
+        
+        <button class="btn btn-primary" style="margin-left: 420px;">Submit</button>
+
     </div> <!-- row.// -->	
 </form>
 </div> <!-- card-body.// -->
@@ -174,15 +182,15 @@
     <div class="card-body">
         <dl class="dlist-align">
           <dt>Total price:</dt>
-          <dd class="text-right">$69.97</dd>
+          <dd class="text-right">${{total}}</dd>
         </dl>
         <dl class="dlist-align">
           <dt>Tax:</dt>
-          <dd class="text-right"> $10.00</dd>
+          <dd class="text-right"> ${{tax}}</dd>
         </dl>
         <dl class="dlist-align">
           <dt>Total:</dt>
-          <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
+          <dd class="text-right text-dark b"><strong>${{grand_total}}</strong></dd>
         </dl>
         <hr>
         <p class="text-center mb-3">
