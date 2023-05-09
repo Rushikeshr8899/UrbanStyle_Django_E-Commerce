@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from store.models import Product
 from .models import CartItem,Cart,Contact_us
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from category.models import Category
 # Create your views here.
 def _cart_id(request):
     cart=request.session.session_key
@@ -107,3 +109,11 @@ def contact_us(request):
         data=Contact_us(first_name=first_name,last_name=last_name,email=email,phone=phone)
         data.save()
     return redirect('cart_prod')
+
+
+def search(request):
+    quary=request.GET['quary']
+    all_product=Product.objects.filter(product_name__icontains=quary)
+    # all_product=Category.objects.filter(category_name__icontains=quary)
+    context={"all_product":all_product}
+    return render(request,'search.html',context)
