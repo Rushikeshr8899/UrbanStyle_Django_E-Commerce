@@ -31,7 +31,7 @@ urlpatterns = [
     path('store/',include('store.urls')),                                
     path('Dashboard/',views.Dashboard,name="Dashboard"),
     path('order_com/',views.order_com,name="order_com"),
-    # path('place_order/',views.place_order,name="place_order"),
+    path('place_order/',views.place_order,name="place_order"),
     # path('product_details/',views.product_details,name="product_details"),
     path('serach_result/',views.serach_result,name="serach_result"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
