@@ -73,12 +73,11 @@ def cart(request,total=0,quantity=0,cart_items=None):
     }
     return render(request,"cart.html",context)
 
-
-# def del_item(request,product_id):
-#     product=Product.objects.get(id=product_id)
-#     del_items=product.delete()
-#     context={
-#         "del":del_items
-#     }
-#     return redirect("cart")
+def search(request):
+    quary=request.GET['quary']
+    all_prod=Product.objects.filter(product_name__icontains=quary)
+    context={
+        'all_prod': all_prod
+    }
+    return render(request,'search.html',context)
 
