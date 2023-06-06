@@ -34,4 +34,8 @@ urlpatterns = [
     path('place_order/',views.place_order,name="place_order"),
     # path('product_details/',views.product_details,name="product_details"),
     path('serach_result/',views.serach_result,name="serach_result"),
+    path('logout/',views.logouts,name="logout"),
+
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

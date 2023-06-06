@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'category',
     'account',
     'store',
-    'Cart'
+    'Cart',
+
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'greatkart.wsgi.application'
 
-AUTH_USER_MODEL='account.Account'
+# AUTH_USER_MODEL='account.Account'
+# AUTH_USER_MODEL='Cart.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
