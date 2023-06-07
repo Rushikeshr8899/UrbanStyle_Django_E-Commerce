@@ -11,14 +11,17 @@
             <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
               <div class="card-body">
               <h4 class="card-title mb-4">Sign in</h4>
-              <form>
-                  <div class="form-group">
-                     <input type="email" class="form-control" placeholder="Email Address" >
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" >
-                  </div> <!-- form-group// -->
-                  
+              <form method="POST" novalidate>
+                  {% csrf_token %}
+<!--                  <div class="form-group">-->
+<!--                     <input type="email" class="form-control" placeholder="Email Address" name="email">-->
+<!--                  </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+<!--                  <div class="form-group">-->
+<!--                    <input type="password" class="form-control" placeholder="Password" name="password">-->
+<!--                  </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+<!--                  -->
+                  {{form.as_p}}
+
                   <div class="form-group">
                       <a href="#" class="float-right">Forgot password?</a> 
                    

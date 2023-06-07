@@ -33,38 +33,62 @@ def Signin(request,total=0,quantity=0,cart_items=None):
     if request.method=="POST":
         x=AuthenticationForm(request=request,data=request.POST)
         if x.is_valid():
-            uname=x.cleaned_data['email']
-            upass=x.cleaned_data['password']
-            user=authenticate(email=uname,password=upass)
+            username=x.cleaned_data['username']
+            password=x.cleaned_data['password']
+            user=authenticate(username=username,password=password)
             if user is not None:
                 login(request,user)
-                return render(request,'place_order.html')
+                # return render(request,'place_order.html')
+                tax = 0
+                grand_total = 0
+
+                try:
+                    cart = Cart.objects.get(cart_id=_cart_id(request))
+                    cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+                    for cart_item in cart_items:
+                       total += (cart_item.product.price * cart_item.quantity)
+                       quantity += cart_item.quantity
+                    tax = (2 * total) / 100
+                    grand_total = tax + total
+
+                except ObjectDoesNotExist:
+                    pass
+                context = {
+                    'total': total,
+                    'quantity': quantity,
+                    'cart_items': cart_items,
+                    'tax': tax,
+                    'grand_total': grand_total
+                }
+# -------------------------------------------
+                return render(request, 'place_order.html', context)
     else:
         x=AuthenticationForm()
+    return render(request,'Signin.html',{"form":x})
 # -------------------------------------------
-    tax = 0
-    grand_total = 0
-
-    try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-        for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
-            quantity += cart_item.quantity
-        tax = (2 * total) / 100
-        grand_total = tax + total
-
-    except ObjectDoesNotExist:
-        pass
-    context = {
-        'total': total,
-        'quantity': quantity,
-        'cart_items': cart_items,
-        'tax': tax,
-        'grand_total': grand_total
-    }
-# -------------------------------------------
-    return render(request,'place_order.html',context)
+#     tax = 0
+#     grand_total = 0
+#
+#     try:
+#         cart = Cart.objects.get(cart_id=_cart_id(request))
+#         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+#         for cart_item in cart_items:
+#             total += (cart_item.product.price * cart_item.quantity)
+#             quantity += cart_item.quantity
+#         tax = (2 * total) / 100
+#         grand_total = tax + total
+#
+#     except ObjectDoesNotExist:
+#         pass
+#     context = {
+#         'total': total,
+#         'quantity': quantity,
+#         'cart_items': cart_items,
+#         'tax': tax,
+#         'grand_total': grand_total
+#     }
+# # -------------------------------------------
+#     return render(request,'place_order.html',context)
 
 # def Cart(request):
 #     return render(request,'cart.html')
@@ -89,4 +113,4 @@ def serach_result(request):
 
 def logouts(request):
     logout(request)
-    return render(request,'Signin.html')
+    return render(request,'logout.html')

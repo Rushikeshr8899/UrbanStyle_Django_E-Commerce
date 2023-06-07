@@ -1,18 +1,26 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        h1{
-           text-align:center;
-           color: blue;
-           margin-top:150px;
-        }
+{% extends "Base.html" %}
+{% load static %}
 
-    </style>
-</head>
-<body>
-<h1>Logout successfully</h1>
-</body>
-</html> -->
+    {% block content %}
+
+    <section class="section-content padding-y" style=" background-image: url('{% static '/images/banners/14.jpg' %}');
+       background-size: cover;">
+
+        <!-- ============================ COMPONENT REGISTER   ================================= -->
+            <div class="card mx-auto" style="max-width:520px; margin-top:40px; background-color: rgb(255,255,255); border-radius: 20px">
+              <article class="card-body">
+               <h1 class="text-center text-success">Logout Successfully</h1>
+
+                </article><!-- card-body.// -->
+            </div> <!-- card .// -->
+            <p class="text-center mt-4">Have an account? <a href="{% url 'Signin' %}">Log In</a></p>
+            <br><br>
+        <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+        </section>
+        <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+  {% endblock content %}
