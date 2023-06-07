@@ -35,10 +35,10 @@ def Signin(request,total=0,quantity=0,cart_items=None):
         if x.is_valid():
             uname=x.cleaned_data['email']
             upass=x.cleaned_data['password']
-            user=authenticate(username=uname,password=upass)
+            user=authenticate(email=uname,password=upass)
             if user is not None:
                 login(request,user)
-            return render(request,'Signin.html')
+                return render(request,'place_order.html')
     else:
         x=AuthenticationForm()
 # -------------------------------------------
