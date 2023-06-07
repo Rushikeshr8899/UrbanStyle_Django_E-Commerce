@@ -105,3 +105,6 @@ def search(request):
     }
     return render(request,'search.html',context)
 
+# def order_complate(request):
+#     return redirect('cart')
+

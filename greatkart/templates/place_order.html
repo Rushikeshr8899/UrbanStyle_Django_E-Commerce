@@ -16,7 +16,7 @@
             <div class="aside"><img src="{{ cart_item.product.images.url }}" class="border img-sm"></div>
             <figcaption class="info">
                 <p>{{ cart_item.product.slug }} </p>
-                <span class="text-muted">{{cart_item.quantity}} X {{cart_item.product.price}}</span>
+                <span class="text-muted">{{cart_item.quantity}} X &#8377;{{cart_item.product.price}}</span>
             </figcaption>
         </figure>
     </div> <!-- col.// -->
@@ -182,15 +182,15 @@
     <div class="card-body">
         <dl class="dlist-align">
           <dt>Total price:</dt>
-          <dd class="text-right">${{total}}</dd>
+          <dd class="text-right">&#8377;{{total}}</dd>
         </dl>
         <dl class="dlist-align">
           <dt>Tax:</dt>
-          <dd class="text-right"> ${{tax}}</dd>
+          <dd class="text-right"> &#8377;{{tax}}</dd>
         </dl>
         <dl class="dlist-align">
           <dt>Total:</dt>
-          <dd class="text-right text-dark b"><strong>${{grand_total}}</strong></dd>
+          <dd class="text-right text-dark b"><strong>&#8377;{{grand_total}}</strong></dd>
         </dl>
         <hr>
         <p class="text-center mb-3">
